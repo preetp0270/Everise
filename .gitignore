@@ -1,0 +1,41 @@
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Node
+backend/node_modules/
+backend/coverage/
+backend/dist/
+backend/logs/
+npm-debug.log*
+yarn-error.log*
+
+# Android
+android/.gradle/
+android/local.properties
+android/**/build/
+android/**/.cxx/
+android/captures/
+android/*.iml
+android/.idea/
+*.apk
+*.aab
+*.dex
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+tmp/
+.temp/
+web/node_modules/
+web/dist/
+web/build/
