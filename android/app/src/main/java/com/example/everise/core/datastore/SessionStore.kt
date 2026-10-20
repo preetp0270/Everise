@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.everise.domain.model.UserSession
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 private val Context.dataStore by preferencesDataStore("everise_session")
@@ -32,6 +33,15 @@ class SessionStore(private val context: Context) {
         )
     }
 
+    /** True when a real (non-guest) account is stored on this device. */
+    suspend fun hasLoggedInSession(): Boolean {
+        val s = getSession() ?: return false
+        if (s.isGuest) return false
+        return s.userId.isNotBlank() && (s.accessToken.isNotBlank() || s.refreshToken.isNotBlank())
+    }
+
+    suspend fun getSession(): UserSession? = sessionFlow.first()
+
     suspend fun save(session: UserSession) {
         context.dataStore.edit { prefs ->
             prefs[keys.userId] = session.userId
@@ -47,13 +57,9 @@ class SessionStore(private val context: Context) {
         context.dataStore.edit { it.clear() }
     }
 
-    suspend fun getAccessToken(): String? {
-        var token: String? = null
-        context.dataStore.edit { prefs ->
-            token = prefs[keys.access]
-        }
-        return token
-    }
+    suspend fun getAccessToken(): String? = getSession()?.accessToken?.takeIf { it.isNotBlank() }
+
+    suspend fun getBearer(): String? = getAccessToken()?.let { "Bearer $it" }
 
     suspend fun updateTokens(access: String, refresh: String) {
         context.dataStore.edit { prefs ->

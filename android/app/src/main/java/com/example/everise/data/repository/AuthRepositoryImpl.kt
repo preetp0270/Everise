@@ -8,8 +8,6 @@ import com.example.everise.core.network.RegisterRequest
 import com.example.everise.domain.model.UserSession
 import com.example.everise.domain.repository.AuthRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
-import java.util.UUID
 
 class AuthRepositoryImpl(
     private val authApi: AuthApi,
@@ -17,6 +15,10 @@ class AuthRepositoryImpl(
 ) : AuthRepository {
 
     override val session: Flow<UserSession?> = sessionStore.sessionFlow
+
+    override suspend fun getSession(): UserSession? = sessionStore.getSession()
+
+    override suspend fun isLoggedIn(): Boolean = sessionStore.hasLoggedInSession()
 
     override suspend fun register(
         email: String,
@@ -34,6 +36,7 @@ class AuthRepositoryImpl(
             displayName = payload.user.displayName ?: displayName,
             accessToken = payload.accessToken,
             refreshToken = payload.refreshToken,
+            isGuest = false,
         )
         sessionStore.save(session)
         session
@@ -51,13 +54,14 @@ class AuthRepositoryImpl(
             displayName = payload.user.displayName ?: email.substringBefore("@"),
             accessToken = payload.accessToken,
             refreshToken = payload.refreshToken,
+            isGuest = false,
         )
         sessionStore.save(session)
         session
     }
 
     override suspend fun logout() {
-        val current = sessionStore.sessionFlow.first()
+        val current = sessionStore.getSession()
         if (current != null && !current.isGuest && current.refreshToken.isNotBlank()) {
             runCatching {
                 authApi.logout(mapOf("refreshToken" to current.refreshToken))
@@ -66,21 +70,8 @@ class AuthRepositoryImpl(
         sessionStore.clear()
     }
 
-    override suspend fun continueAsGuest(): UserSession {
-        val session = UserSession(
-            userId = "guest-${UUID.randomUUID()}",
-            email = "",
-            displayName = "Guest",
-            accessToken = "",
-            refreshToken = "",
-            isGuest = true,
-        )
-        sessionStore.save(session)
-        return session
-    }
-
     override suspend fun refreshIfNeeded(): Boolean {
-        val current = sessionStore.sessionFlow.first() ?: return false
+        val current = sessionStore.getSession() ?: return false
         if (current.isGuest || current.refreshToken.isBlank()) return false
         return runCatching {
             val res = authApi.refresh(RefreshRequest(current.refreshToken))

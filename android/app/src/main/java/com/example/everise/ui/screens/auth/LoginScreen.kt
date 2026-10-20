@@ -49,7 +49,6 @@ fun LoginScreen(
     errorMessage: String? = null,
     onLogin: (email: String, password: String) -> Unit,
     onNavigateToRegister: () -> Unit,
-    onContinueAsGuest: (() -> Unit)? = null,
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -179,19 +178,6 @@ fun LoginScreen(
                 color = MaterialTheme.colorScheme.primary,
             )
         }
-
-        if (onContinueAsGuest != null) {
-            TextButton(
-                onClick = onContinueAsGuest,
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-            ) {
-                Text(
-                    text = "Continue as guest",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
     }
 }
 
@@ -210,7 +196,6 @@ private fun LoginPreview() {
         LoginScreen(
             onLogin = { _, _ -> },
             onNavigateToRegister = {},
-            onContinueAsGuest = {},
         )
     }
 }

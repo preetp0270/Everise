@@ -1,6 +1,9 @@
 package com.example.everise.data.repository
 
+import android.content.Context
+import com.example.everise.core.common.isOnline
 import com.example.everise.core.common.todayIsoDate
+import com.example.everise.core.sync.SyncWorker
 import com.example.everise.data.local.dao.HabitDao
 import com.example.everise.data.local.dao.HabitLogDao
 import com.example.everise.data.local.dao.SyncQueueDao
@@ -19,10 +22,17 @@ import kotlinx.coroutines.flow.map
 import java.util.UUID
 
 class HabitRepositoryImpl(
+    private val appContext: Context,
     private val habitDao: HabitDao,
     private val logDao: HabitLogDao,
     private val syncQueueDao: SyncQueueDao,
 ) : HabitRepository {
+
+    private fun requestSync() {
+        // Always enqueue; WorkManager runs when network is available
+        SyncWorker.enqueue(appContext)
+    }
+
 
     override fun observeTodayHabits(): Flow<List<HabitWithTodayStatus>> {
         val today = todayIsoDate()
@@ -67,6 +77,7 @@ class HabitRepositoryImpl(
                 payloadJson = habit.id,
             )
         )
+        requestSync()
         return habit
     }
 
@@ -81,6 +92,7 @@ class HabitRepositoryImpl(
                 payloadJson = updated.id,
             )
         )
+        requestSync()
         return updated
     }
 
@@ -89,6 +101,7 @@ class HabitRepositoryImpl(
         syncQueueDao.enqueue(
             SyncQueueEntity(entityType = "habit", entityId = id, operation = "archive", payloadJson = id)
         )
+        requestSync()
     }
 
     override suspend fun deleteHabit(id: String) {
@@ -96,6 +109,7 @@ class HabitRepositoryImpl(
         syncQueueDao.enqueue(
             SyncQueueEntity(entityType = "habit", entityId = id, operation = "delete", payloadJson = id)
         )
+        requestSync()
     }
 
     override suspend fun setTodayStatus(
@@ -129,6 +143,7 @@ class HabitRepositoryImpl(
                 payloadJson = log.id,
             )
         )
+        requestSync()
     }
 
     override suspend fun undoToday(habitId: String) {
@@ -142,5 +157,6 @@ class HabitRepositoryImpl(
                 payloadJson = "$habitId:$today",
             )
         )
+        requestSync()
     }
 }

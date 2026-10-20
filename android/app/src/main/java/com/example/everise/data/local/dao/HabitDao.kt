@@ -40,6 +40,9 @@ interface HabitDao {
     @Query("SELECT * FROM habits WHERE pendingSync = 1")
     suspend fun getPendingSync(): List<HabitEntity>
 
+    @Query("SELECT * FROM habits WHERE isArchived = 0")
+    suspend fun listActive(): List<HabitEntity>
+
     @Query("SELECT COUNT(*) FROM habits WHERE isArchived = 0")
     suspend fun countActive(): Int
 }

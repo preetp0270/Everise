@@ -23,7 +23,10 @@ import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -46,8 +49,13 @@ fun HomeScreen(
 ) {
     val habits by viewModel.habits.collectAsStateWithLifecycle()
     val progress by viewModel.progress.collectAsStateWithLifecycle()
+    val message by viewModel.message.collectAsStateWithLifecycle()
 
     HomeScreenContent(
+        message = message,
+        onDismissMessage = { viewModel.clearMessage() },
+        onSyncNow = { viewModel.syncNow() },
+
         userName = userName,
         habits = habits,
         progress = progress,
@@ -65,6 +73,9 @@ fun HomeScreenContent(
     onToggle: (String, Boolean) -> Unit,
     onAddHabit: () -> Unit,
     onHabitClick: (String) -> Unit,
+    message: String? = null,
+    onDismissMessage: () -> Unit = {},
+    onSyncNow: () -> Unit = {},
 ) {
     val greeting = when (LocalTime.now().hour) {
         in 5..11 -> "Good morning"
@@ -192,6 +203,20 @@ fun HomeScreenContent(
             }
 
             item { Spacer(modifier = Modifier.height(88.dp)) }
+        }
+
+        if (message != null) {
+            Snackbar(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 88.dp, start = 16.dp, end = 16.dp),
+                action = {
+                    TextButton(onClick = {
+                        onSyncNow()
+                        onDismissMessage()
+                    }) { Text("Upload") }
+                },
+            ) { Text(message) }
         }
 
         FloatingActionButton(
