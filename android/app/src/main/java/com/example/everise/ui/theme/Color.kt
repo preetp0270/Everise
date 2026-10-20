@@ -2,67 +2,103 @@ package com.example.everise.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// ─── Light theme ───────────────────────────────────────────
-val PrimaryLight = Color(0xFF166589)
+// ─── Exact Everise Design System Tokens ───────────────────
+// Light Theme Tokens
+val EveriseBackgroundLight = Color(0xFFF7F9FC)
+val EveriseWhiteSurface = Color(0xFFFFFFFF)
+val EveriseWarmCreamSurface = Color(0xFFFAF6EB)
+val EveriseBrandBlue = Color(0xFF5B9FC5)
+val EveriseDeepBlue = Color(0xFF286D91)
+val EverisePaleBlueSurface = Color(0xFFE4F0FA)
+val EveriseSageGreen = Color(0xFF8FB59B)
+val EverisePaleSageSurface = Color(0xFFE8F1E9)
+val EverisePrimaryTextLight = Color(0xFF172638)
+val EveriseSecondaryTextLight = Color(0xFF718096)
+val EveriseBorderLight = Color(0xFFE4E8EF)
+val EveriseDestructiveRed = Color(0xFFD96C6C)
+
+// Dark Theme Tokens
+val EveriseBackgroundDark = Color(0xFF10151C)
+val EveriseSurfaceDark = Color(0xFF181F28)
+val EveriseElevatedSurfaceDark = Color(0xFF202A35)
+val EveriseBrandBlueDark = Color(0xFF8DC9E8)
+val EveriseAccentSurfaceDark = Color(0xFF243D4D)
+val EveriseSageGreenDark = Color(0xFF91C6A2)
+val EverisePrimaryTextDark = Color(0xFFF1F5F9)
+val EveriseSecondaryTextDark = Color(0xFFA1ADBB)
+val EveriseBorderDark = Color(0xFF303B47)
+
+// ─── Material 3 Mapped Palette (Light) ────────────────────
+val PrimaryLight = EveriseDeepBlue
 val OnPrimaryLight = Color(0xFFFFFFFF)
-val PrimaryContainerLight = Color(0xFF5D9FC6)
-val OnPrimaryContainerLight = Color(0xFF00344A)
+val PrimaryContainerLight = EveriseBrandBlue
+val OnPrimaryContainerLight = Color(0xFFFFFFFF)
 
-val SecondaryLight = Color(0xFF346479)
+val SecondaryLight = EveriseSageGreen
 val OnSecondaryLight = Color(0xFFFFFFFF)
-val SecondaryContainerLight = Color(0xFFB6E7FF)
-val OnSecondaryContainerLight = Color(0xFF38687D)
+val SecondaryContainerLight = EverisePaleSageSurface
+val OnSecondaryContainerLight = Color(0xFF1A3D27)
 
-val TertiaryLight = Color(0xFF436650)
+val TertiaryLight = Color(0xFF605E56)
 val OnTertiaryLight = Color(0xFFFFFFFF)
-val TertiaryContainerLight = Color(0xFF7CA087)
-val OnTertiaryContainerLight = Color(0xFF143623)
+val TertiaryContainerLight = Color(0xFF9A978E)
+val OnTertiaryContainerLight = Color(0xFF313029)
 
-/** Sage success used for completions */
-val SuccessLight = Color(0xFF8FB49A)
-val SuccessContainerLight = Color(0xFFEAF6FC)
+val SuccessLight = EveriseSageGreen
+val SuccessContainerLight = EverisePaleSageSurface
+val SuccessSoft = EverisePaleSageSurface
 
-val BackgroundLight = Color(0xFFF8F9FF)
-val OnBackgroundLight = Color(0xFF0E1C2C)
-val SurfaceLight = Color(0xFFF8F5ED) // cream card
-val OnSurfaceLight = Color(0xFF172535)
-val SurfaceVariantLight = Color(0xFFD5E4F9)
-val OnSurfaceVariantLight = Color(0xFF697789)
-val OutlineLight = Color(0xFFE8EAF0)
-val OutlineVariantLight = Color(0xFFC0C7CE)
+val BackgroundLight = EveriseBackgroundLight
+val OnBackgroundLight = EverisePrimaryTextLight
+val SurfaceLight = EveriseWhiteSurface
+val OnSurfaceLight = EverisePrimaryTextLight
 
-val ErrorLight = Color(0xFFBA1A1A)
+val SurfaceContainerLowest = EveriseWhiteSurface
+val SurfaceContainerLow = EverisePaleBlueSurface
+val SurfaceContainer = Color(0xFFEDF2F7)
+val SurfaceContainerHigh = Color(0xFFE2E8F0)
+val SurfaceContainerHighest = Color(0xFFCBD5E1)
+val SurfaceVariantLight = EverisePaleBlueSurface
+val OnSurfaceVariantLight = EveriseSecondaryTextLight
+val OutlineLight = EveriseBorderLight
+val OutlineVariantLight = Color(0xFFCBD5E1)
+
+val CreamPill = EveriseWarmCreamSurface
+val CreamOn = Color(0xFF5B481E)
+val CreamAccent = Color(0xFFA68840)
+
+val ErrorLight = EveriseDestructiveRed
 val OnErrorLight = Color(0xFFFFFFFF)
 val ErrorContainerLight = Color(0xFFFFDAD6)
 val OnErrorContainerLight = Color(0xFF93000A)
 
-// ─── Dark theme ────────────────────────────────────────────
-val PrimaryDark = Color(0xFF79BDE5)
-val OnPrimaryDark = Color(0xFF111318)
-val PrimaryContainerDark = Color(0xFF004C6B)
-val OnPrimaryContainerDark = Color(0xFFC6E7FF)
+// ─── Material 3 Mapped Palette (Dark) ─────────────────────
+val PrimaryDark = EveriseBrandBlueDark
+val OnPrimaryDark = Color(0xFF00344A)
+val PrimaryContainerDark = EveriseAccentSurfaceDark
+val OnPrimaryContainerDark = Color(0xFFC4E7FF)
 
-val SecondaryDark = Color(0xFF9DCDE5)
-val OnSecondaryDark = Color(0xFF00344A)
-val SecondaryContainerDark = Color(0xFF184C60)
-val OnSecondaryContainerDark = Color(0xFFBEE9FF)
+val SecondaryDark = EveriseSageGreenDark
+val OnSecondaryDark = Color(0xFF103822)
+val SecondaryContainerDark = Color(0xFF203B2B)
+val OnSecondaryContainerDark = EveriseSageGreenDark
 
-val TertiaryDark = Color(0xFF8FC6A1)
-val OnTertiaryDark = Color(0xFF143623)
-val TertiaryContainerDark = Color(0xFF2C4E39)
-val OnTertiaryContainerDark = Color(0xFFC5ECD0)
+val TertiaryDark = Color(0xFFCAC6BC)
+val OnTertiaryDark = Color(0xFF313029)
+val TertiaryContainerDark = Color(0xFF48473F)
+val OnTertiaryContainerDark = Color(0xFFE6E2D8)
 
-val SuccessDark = Color(0xFF8FC6A1)
-val SuccessContainerDark = Color(0xFF304454)
+val SuccessDark = EveriseSageGreenDark
+val SuccessContainerDark = Color(0xFF203B2B)
 
-val BackgroundDark = Color(0xFF111318)
-val OnBackgroundDark = Color(0xFFF4F7FA)
-val SurfaceDark = Color(0xFF202630)
-val OnSurfaceDark = Color(0xFFF4F7FA)
-val SurfaceVariantDark = Color(0xFF282F3A)
-val OnSurfaceVariantDark = Color(0xFFA8B2C0)
-val OutlineDark = Color(0xFF303846)
-val OutlineVariantDark = Color(0xFF40484E)
+val BackgroundDark = EveriseBackgroundDark
+val OnBackgroundDark = EverisePrimaryTextDark
+val SurfaceDark = EveriseSurfaceDark
+val OnSurfaceDark = EverisePrimaryTextDark
+val SurfaceVariantDark = EveriseAccentSurfaceDark
+val OnSurfaceVariantDark = EveriseSecondaryTextDark
+val OutlineDark = EveriseBorderDark
+val OutlineVariantDark = Color(0xFF3D4B59)
 
 val ErrorDark = Color(0xFFFFB4AB)
 val OnErrorDark = Color(0xFF690005)

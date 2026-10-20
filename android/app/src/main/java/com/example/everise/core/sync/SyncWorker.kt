@@ -53,7 +53,6 @@ class SyncWorker(
             Log.w(TAG, "No access token after refresh")
             return Result.retry()
         }
-        val token = bearer
 
         val queue = container.syncQueueDao
         val habitDao = container.db.habitDao()
@@ -80,27 +79,27 @@ class SyncWorker(
                         val h = entity.toDomain()
                         val body = RemoteHabit(
                             name = h.name,
-                            description = h.description,
-                            icon = h.icon,
-                            color = h.color,
-                            category = h.category,
+                            description = h.description ?: "",
+                            icon = h.icon ?: "spa",
+                            color = h.color ?: "#5D9FC6",
+                            category = h.category ?: "personal_development",
                             schedule = RemoteSchedule(type = h.scheduleType.name.lowercase()),
                             target = RemoteTarget(type = h.targetType.name.lowercase(), value = h.targetValue, unit = h.targetUnit),
                             reminder = RemoteReminder(enabled = h.reminderEnabled, times = h.reminderTimes),
                             startDate = h.startDate,
-                            endDate = h.endDate,
+                            endDate = h.endDate ?: "",
                             isPinned = h.isPinned,
                             priority = h.priority,
                             order = h.order,
                             isNegative = h.isNegative,
-                            implementationIntention = h.implementationIntention,
-                            minVersion = h.minVersion,
+                            implementationIntention = h.implementationIntention ?: "",
+                            minVersion = h.minVersion ?: "",
                         )
                         val res = if (item.operation == "create" && h.remoteId == null) {
-                            habitApi.create(token, body)
+                            habitApi.create(bearer!!, body)
                         } else {
                             val remoteId = h.remoteId ?: h.id
-                            habitApi.update(token, remoteId, body)
+                            habitApi.update(bearer!!, remoteId, body)
                         }
                         if (res.success) {
                             val remoteId = res.data?.id
@@ -118,11 +117,11 @@ class SyncWorker(
                     "habit" to "archive" -> {
                         val entity = habitDao.getById(item.entityId)
                         val remoteId = entity?.remoteId ?: item.entityId
-                        runCatching { habitApi.archive(token, remoteId) }
+                        runCatching { habitApi.archive(bearer!!, remoteId) }
                         queue.remove(item.id)
                     }
                     "habit" to "delete" -> {
-                        runCatching { habitApi.delete(token, item.entityId) }
+                        runCatching { habitApi.delete(bearer!!, item.entityId) }
                         queue.remove(item.id)
                     }
                     "habit_log" to "complete" -> {
@@ -150,7 +149,7 @@ class SyncWorker(
                         val habit = habitDao.getById(match.habitId)
                         val remoteHabitId = habit?.remoteId ?: match.habitId
                         val res = habitApi.createLog(
-                            token,
+                            bearer!!,
                             req.copy(habitId = remoteHabitId),
                         )
                         if (res.success) {

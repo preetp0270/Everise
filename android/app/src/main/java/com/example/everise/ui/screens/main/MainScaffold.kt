@@ -1,14 +1,20 @@
 package com.example.everise.ui.screens.main
 
 import android.app.Application
-
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AddCircleOutline
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.BarChart
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -18,6 +24,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -44,10 +51,9 @@ import com.example.everise.ui.screens.settings.SettingsScreen
 
 private data class BottomDest(val route: String, val label: String, val icon: ImageVector)
 
-private val bottomDestinations = listOf(
+private val sideDestinations = listOf(
     BottomDest(Routes.HOME, "Home", Icons.Outlined.Home),
     BottomDest(Routes.CALENDAR, "Calendar", Icons.Outlined.CalendarMonth),
-    BottomDest(Routes.ADD_HABIT, "Add", Icons.Outlined.AddCircleOutline),
     BottomDest(Routes.INSIGHTS, "Insights", Icons.Outlined.BarChart),
     BottomDest(Routes.PROFILE, "Profile", Icons.Outlined.Person),
 )
@@ -66,36 +72,73 @@ fun MainScaffold(
 
     val hideBottomBar = currentDestination?.route?.startsWith("habit_detail") == true ||
         currentDestination?.route?.startsWith("edit_habit") == true ||
-        currentDestination?.route == Routes.SETTINGS
+        currentDestination?.route == Routes.SETTINGS ||
+        currentDestination?.route == Routes.ADD_HABIT
 
     Scaffold(
         bottomBar = {
             if (!hideBottomBar) {
-                NavigationBar(
-                    containerColor = MaterialTheme.colorScheme.surface,
-                    tonalElevation = 0.dp,
-                ) {
-                    bottomDestinations.forEach { dest ->
-                        val selected = currentDestination?.hierarchy?.any { it.route == dest.route } == true
+                Box {
+                    NavigationBar(
+                        containerColor = MaterialTheme.colorScheme.surface,
+                        tonalElevation = 0.dp,
+                    ) {
+                        // Left pair
+                        sideDestinations.take(2).forEach { dest ->
+                            val selected = currentDestination?.hierarchy?.any { it.route == dest.route } == true
+                            NavigationBarItem(
+                                selected = selected,
+                                onClick = {
+                                    navController.navigate(dest.route) {
+                                        popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
+                                },
+                                icon = { Icon(dest.icon, contentDescription = dest.label) },
+                                label = { Text(dest.label, style = MaterialTheme.typography.labelSmall) },
+                                colors = navColors(),
+                            )
+                        }
+                        // Spacer for center FAB
                         NavigationBarItem(
-                            selected = selected,
-                            onClick = {
-                                navController.navigate(dest.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) { saveState = true }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                            },
-                            icon = { Icon(dest.icon, contentDescription = dest.label) },
-                            label = { Text(dest.label, style = MaterialTheme.typography.labelSmall) },
-                            colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = MaterialTheme.colorScheme.primary,
-                                selectedTextColor = MaterialTheme.colorScheme.primary,
-                                indicatorColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.35f),
-                                unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                                unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                            ),
+                            selected = false,
+                            onClick = { navController.navigate(Routes.ADD_HABIT) },
+                            icon = { SpacerIcon() },
+                            label = { Text("") },
+                            enabled = false,
+                            colors = navColors(),
                         )
+                        // Right pair
+                        sideDestinations.drop(2).forEach { dest ->
+                            val selected = currentDestination?.hierarchy?.any { it.route == dest.route } == true
+                            NavigationBarItem(
+                                selected = selected,
+                                onClick = {
+                                    navController.navigate(dest.route) {
+                                        popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
+                                },
+                                icon = { Icon(dest.icon, contentDescription = dest.label) },
+                                label = { Text(dest.label, style = MaterialTheme.typography.labelSmall) },
+                                colors = navColors(),
+                            )
+                        }
+                    }
+                    FloatingActionButton(
+                        onClick = { navController.navigate(Routes.ADD_HABIT) },
+                        modifier = Modifier
+                            .align(Alignment.TopCenter)
+                            .offset(y = (-18).dp)
+                            .size(58.dp),
+                        shape = CircleShape,
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        contentColor = MaterialTheme.colorScheme.onPrimary,
+                        elevation = FloatingActionButtonDefaults.elevation(6.dp),
+                    ) {
+                        Icon(Icons.Outlined.Add, contentDescription = "Add habit", modifier = Modifier.size(28.dp))
                     }
                 }
             }
@@ -111,7 +154,7 @@ fun MainScaffold(
                     factory = HomeViewModel.Factory(
                         LocalContext.current.applicationContext as Application,
                         habitRepo,
-                    )
+                    ),
                 )
                 HomeScreen(
                     viewModel = vm,
@@ -141,8 +184,11 @@ fun MainScaffold(
             composable(Routes.PROFILE) {
                 ProfileScreen(
                     userName = userName,
+                    preferencesStore = prefsStore,
                     onOpenSettings = { navController.navigate(Routes.SETTINGS) },
+                    onSwitchAccount = { },
                     onLogout = onLogout,
+                    onDeleteAccount = { },
                 )
             }
             composable(Routes.SETTINGS) {
@@ -182,4 +228,18 @@ fun MainScaffold(
             }
         }
     }
+}
+
+@Composable
+private fun navColors() = NavigationBarItemDefaults.colors(
+    selectedIconColor = MaterialTheme.colorScheme.primary,
+    selectedTextColor = MaterialTheme.colorScheme.primary,
+    indicatorColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.35f),
+    unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+    unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+)
+
+@Composable
+private fun SpacerIcon() {
+    Box(Modifier.size(24.dp))
 }

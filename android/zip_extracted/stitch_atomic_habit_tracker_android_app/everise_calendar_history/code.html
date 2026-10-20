@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;}body{overscroll-behavior:none;background-color:#f8f9ff;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "primary": "#126588", "secondary-container": "#c4ecd0", "secondary": "#436650", "on-secondary-fixed-variant": "#2b4e39", "surface-tint": "#126588", "outline-variant": "#c0c7ce", "on-tertiary-container": "#313029", "on-background": "#0d1c2e", "surface-variant": "#d4e4fc", "surface-container-highest": "#d4e4fc", "secondary-fixed-dim": "#a9d0b5", "background": "#f8f9ff", "inverse-surface": "#233144", "inverse-on-surface": "#eaf1ff", "on-primary-container": "#003449", "on-tertiary": "#ffffff", "tertiary": "#605e56", "on-surface": "#0d1c2e", "surface-container-lowest": "#ffffff", "on-tertiary-fixed-variant": "#48473f", "surface-dim": "#ccdbf3", "primary-fixed-dim": "#8ccff7", "tertiary-fixed-dim": "#cac6bc", "secondary-fixed": "#c4ecd0", "outline": "#70787e", "on-surface-variant": "#40484d", "tertiary-container": "#9a978e", "error-container": "#ffdad6", "surface-bright": "#f8f9ff", "on-error": "#ffffff", "primary-fixed": "#c4e7ff", "tertiary-fixed": "#e6e2d8", "surface-container-high": "#dce9ff", "primary-container": "#5b9fc5", "inverse-primary": "#8ccff7", "on-primary-fixed-variant": "#004c69", "on-primary-fixed": "#001e2d", "surface": "#f8f9ff", "on-secondary": "#ffffff", "on-error-container": "#93000a", "surface-container": "#e5eeff", "on-tertiary-fixed": "#1c1c15", "error": "#ba1a1a", "surface-container-low": "#eff4ff", "on-secondary-container": "#496c56", "on-secondary-fixed": "#002111" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "space-sm": "0.5rem", "margin": "1.25rem", "gutter": "1rem", "space-md": "1rem", "space-lg": "1.5rem", "space-xl": "2rem" }, "fontFamily": { "body-md": ["Inter"], "body-sm": ["Inter"], "headline-sm": ["Plus Jakarta Sans"], "label-md": ["Inter"], "title-md": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "display-md": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "label-lg": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "stat-numeric": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"] }, "fontSize": { "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "title-md": ["16px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "600" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "display-md": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "stat-numeric": ["24px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] pt-safe"><div class="h-16 px-margin flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><img alt="Everise Logo" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WTW6Y8smdNWS8CMPvraCdM5wlP7ZxX102uLwZSVsAn-kk4DdMXicNKdM-l4SJtYjBdh3bTlTYVWD86_ZUX9I5hooy-4w9kSrnRYqmV4czdWwT2ncbX2N0S_MazIyehc4FR_jKoeKLA_4FYvjNGJEZADJzuev99z1lFR8axH8RlRtuud4tTj3WgNs0QN9uvEz9lJ1qPb_UYjAIsGJ4E2slg2ZLT1UXU3HNe2_BNeHM5B7W5PZKqxfyO5NFq"/><span class="font-headline-sm text-headline-sm text-on-surface truncate tracking-tight">Calendar &amp; History</span></div><div class="flex items-center justify-end shrink-0 min-w-[48px] min-h-[48px]"><button aria-label="Account settings" class="w-12 h-12 flex items-center justify-center rounded-full hover:bg-surface-container-high/60 transition-colors duration-200 focus:outline-none"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_2px_6px_rgba(0,0,0,0.06)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb_vVf29WU_6KJzjH9n5r2MFxKm9Ibmllbq2XdyAkdI8E0PdZ6ANoNjnxWU9ZOqYUoOss08wkDv4WGEB1nabpL9M4tYWdNzhgoC753lrhSAeWBYygAsZqfU_Fi3KTgg94CHg2Zq9GYLBbhgHPBukqsaDcYHNdCP0wJGLu9UkiY60twCAm5mahBZGvPt1_4_hPsB0YwnH8Nb6fYY-y9bH98meF063aJ4GcRIMVdG4-7Rezqy1_jWefTsw"/></button></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface px-margin"><div class="flex flex-col w-full pb-8">
+<!-- Subtle Top Ambient Aura -->
+<div class="relative w-full mb-3">
+<!-- Month Navigation Header & Quick Today Chip -->
+<div class="flex items-center justify-between py-1">
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight" id="calendar-month-label">October 2024</h2>
+<div class="flex items-center">
+<button aria-label="Previous month" class="w-9 h-9 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150" id="prev-month-btn">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button aria-label="Next month" class="w-9 h-9 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150" id="next-month-btn">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<button class="px-3 py-1.5 rounded-full bg-surface-container-high/70 hover:bg-surface-container-highest text-primary font-label-md text-label-md active:scale-95 transition-all duration-150 flex items-center gap-1" id="today-shortcut-btn">
+<span class="material-symbols-outlined text-[16px]">today</span>
+<span>Today</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant -mt-0.5">Gentle, compounding gains without pressure</p>
+</div>
+<!-- Calendar Heatmap Card -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(23,38,56,0.04)] p-space-md mb-space-md">
+<!-- Weekday headers -->
+<div class="grid grid-cols-7 gap-1 text-center mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant/70">M</span>
+<span class="font-label-md text-label-md text-on-surface-variant/70">T</span>
+<span class="font-label-md text-label-md text-on-surface-variant/70">W</span>
+<span class="font-label-md text-label-md text-on-surface-variant/70">T</span>
+<span class="font-label-md text-label-md text-on-surface-variant/70">F</span>
+<span class="font-label-md text-label-md text-on-surface-variant/70">S</span>
+<span class="font-label-md text-label-md text-on-surface-variant/70">S</span>
+</div>
+<!-- 7-Column Days Grid -->
+<div class="grid grid-cols-7 gap-y-2 gap-x-1 place-items-center" id="calendar-days-grid">
+<!-- Previous month tail: Sep 30 -->
+<div class="w-10 h-10 flex flex-col items-center justify-center rounded-lg opacity-30 cursor-default">
+<span class="font-label-md text-label-md text-on-surface-variant">30</span>
+</div>
+<!-- Oct 1 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-01" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">1</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 2 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-02" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">2</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 3 (Partial) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-03">
+<span class="font-label-md text-label-md text-on-surface">3</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim mt-0.5"></span>
+</button>
+<!-- Oct 4 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-04" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">4</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 5 (Rest/Quiet) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-05">
+<span class="font-label-md text-label-md text-on-surface">5</span>
+<span class="w-1.5 h-1.5 rounded-full bg-surface-variant mt-0.5"></span>
+</button>
+<!-- Oct 6 (Rest/Quiet) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-06">
+<span class="font-label-md text-label-md text-on-surface">6</span>
+<span class="w-1.5 h-1.5 rounded-full bg-surface-variant mt-0.5"></span>
+</button>
+<!-- Oct 7 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-07" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">7</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 8 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-08" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">8</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 9 (Partial) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-09">
+<span class="font-label-md text-label-md text-on-surface">9</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim mt-0.5"></span>
+</button>
+<!-- Oct 10 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-10" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">10</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 11 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-11" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">11</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 12 (Partial) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-12">
+<span class="font-label-md text-label-md text-on-surface">12</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim mt-0.5"></span>
+</button>
+<!-- Oct 13 (Rest) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-13">
+<span class="font-label-md text-label-md text-on-surface">13</span>
+<span class="w-1.5 h-1.5 rounded-full bg-surface-variant mt-0.5"></span>
+</button>
+<!-- Oct 14 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-14" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">14</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 15 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-15" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">15</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 16 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-16" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">16</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 17 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-17" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">17</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 18 (Partial) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-18">
+<span class="font-label-md text-label-md text-on-surface">18</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim mt-0.5"></span>
+</button>
+<!-- Oct 19 (Rest) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-19">
+<span class="font-label-md text-label-md text-on-surface">19</span>
+<span class="w-1.5 h-1.5 rounded-full bg-surface-variant mt-0.5"></span>
+</button>
+<!-- Oct 20 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-20" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">20</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 21 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-21" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">21</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 22 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-22" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">22</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 23 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-23" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">23</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 24 (Active Selected Day) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl bg-primary-fixed shadow-[0_4px_12px_rgba(18,101,136,0.18)] transition-all relative active:scale-95" data-date="2024-10-24" data-selected="true" id="day-24-active">
+<span class="font-headline-sm text-headline-sm text-on-primary-fixed font-bold leading-none">24</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-0.5"></span>
+</button>
+<!-- Oct 25 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-25" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">25</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 26 (Partial) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-26">
+<span class="font-label-md text-label-md text-on-surface">26</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim mt-0.5"></span>
+</button>
+<!-- Oct 27 (Rest) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-27">
+<span class="font-label-md text-label-md text-on-surface">27</span>
+<span class="w-1.5 h-1.5 rounded-full bg-surface-variant mt-0.5"></span>
+</button>
+<!-- Oct 28 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-28" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">28</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 29 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-29" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">29</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 30 (Full) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-30" data-full="true">
+<span class="font-label-md text-label-md text-on-surface">30</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mt-0.5"></span>
+</button>
+<!-- Oct 31 (Partial) -->
+<button class="day-cell w-10 h-10 flex flex-col items-center justify-center rounded-xl hover:bg-surface-container-low transition-all relative active:scale-95" data-date="2024-10-31">
+<span class="font-label-md text-label-md text-on-surface">31</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim mt-0.5"></span>
+</button>
+<!-- Next month tail: Nov 1-3 -->
+<div class="w-10 h-10 flex flex-col items-center justify-center rounded-lg opacity-30 cursor-default">
+<span class="font-label-md text-label-md text-on-surface-variant">1</span>
+</div>
+<div class="w-10 h-10 flex flex-col items-center justify-center rounded-lg opacity-30 cursor-default">
+<span class="font-label-md text-label-md text-on-surface-variant">2</span>
+</div>
+<div class="w-10 h-10 flex flex-col items-center justify-center rounded-lg opacity-30 cursor-default">
+<span class="font-label-md text-label-md text-on-surface-variant">3</span>
+</div>
+</div>
+<!-- Soft Legend Bar -->
+<div class="mt-4 pt-3 flex items-center justify-around bg-surface-container-low rounded-xl px-2 py-2">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Complete</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-fixed-dim"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Partial</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-variant"></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Rest / Breathe</span>
+</div>
+</div>
+</section>
+<!-- 12-Week Consistency Matrix (Compounding Gains) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(23,38,56,0.04)] p-space-md mb-space-md">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-primary">auto_graph</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">12-Week Momentum</h3>
+</div>
+<span class="font-label-md text-label-md text-secondary bg-secondary-container/60 px-2.5 py-0.5 rounded-full font-medium">84% Rate</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Quiet rhythm across 84 days. Every tiny block supports your identity.</p>
+<!-- Contribution Matrix Visualization -->
+<div class="overflow-x-auto pb-1">
+<div class="grid grid-rows-7 grid-flow-col gap-1 w-max">
+<!-- Week 1 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-secondary-fixed-dim"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<!-- Week 2 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-secondary-fixed-dim"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<!-- Week 3 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-secondary-fixed-dim"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-secondary-fixed-dim"></span>
+<!-- Week 4 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<!-- Week 5 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-secondary-fixed-dim"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<!-- Week 6 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-secondary-fixed-dim"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<!-- Week 7 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-secondary-fixed-dim"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<!-- Week 8 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-secondary-fixed-dim"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<!-- Week 9 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-secondary-fixed-dim"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<!-- Week 10 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-secondary-fixed-dim"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<!-- Week 11 -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<!-- Week 12 (Current) -->
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary-container"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-primary shadow-[0_0_8px_rgba(18,101,136,0.5)]"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container-high/40"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container-high/40"></span>
+<span class="w-2.5 h-2.5 rounded-xs bg-surface-container-high/40"></span>
+</div>
+</div>
+<!-- Metric Pill Footnote -->
+<div class="mt-3.5 pt-3 flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">local_fire_department</span>
+<span><strong class="text-on-surface font-headline-sm text-body-md font-semibold">18 days</strong> active streak</span>
+</div>
+<span class="text-on-surface-variant/80">31/37 intentional days</span>
+</div>
+</section>
+<!-- Selected Day Breakdown Card -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(23,38,56,0.04)] p-space-md mb-space-md">
+<!-- Header of the Selected Day -->
+<div class="flex items-start justify-between mb-3">
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-md text-headline-md text-on-surface tracking-tight" id="selected-day-title">Thursday, Oct 24</h3>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-semibold">Today</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5" id="score-text">4 of 6 habits completed · <span class="text-primary font-medium">67% completion</span></p>
+</div>
+<!-- Radial Progress Graphic Ring -->
+<div class="relative w-12 h-12 flex items-center justify-center shrink-0">
+<svg class="w-12 h-12 -rotate-90" viewbox="0 0 48 48">
+<circle class="text-surface-container-high" cx="24" cy="24" fill="transparent" r="20" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary-container transition-all duration-300" cx="24" cy="24" fill="transparent" id="progress-circle" r="20" stroke="currentColor" stroke-dasharray="125.6" stroke-dashoffset="41.4" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute font-headline-sm text-body-sm font-bold text-on-surface" id="score-numeric">67%</span>
+</div>
+</div>
+<!-- Scheduled Habits List with Tactile Micro-Interactions -->
+<div class="space-y-2 mt-4" id="habit-checklist">
+<!-- Habit 1 (Done) -->
+<div class="habit-item flex items-center justify-between p-3 rounded-xl bg-surface-container-low transition-colors duration-200" data-completed="true">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/60 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">water_drop</span>
+</div>
+<div class="min-w-0">
+<p class="habit-name font-title-md text-title-md text-on-surface line-through text-on-surface-variant/80 truncate">Drink 8 glasses of water</p>
+<p class="font-body-sm text-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done</span> Completed at 2:15 PM
+            </p>
+</div>
+</div>
+<button aria-label="Toggle Drink 8 glasses of water" class="habit-toggle w-12 h-12 flex items-center justify-center shrink-0 active:scale-90 transition-transform">
+<span class="check-box w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</span>
+</button>
+</div>
+<!-- Habit 2 (Done) -->
+<div class="habit-item flex items-center justify-between p-3 rounded-xl bg-surface-container-low transition-colors duration-200" data-completed="true">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/60 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+</div>
+<div class="min-w-0">
+<p class="habit-name font-title-md text-title-md text-on-surface line-through text-on-surface-variant/80 truncate">Read 20 minutes</p>
+<p class="font-body-sm text-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done</span> Completed at 7:40 AM
+            </p>
+</div>
+</div>
+<button aria-label="Toggle Read 20 minutes" class="habit-toggle w-12 h-12 flex items-center justify-center shrink-0 active:scale-90 transition-transform">
+<span class="check-box w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</span>
+</button>
+</div>
+<!-- Habit 3 (Done) -->
+<div class="habit-item flex items-center justify-between p-3 rounded-xl bg-surface-container-low transition-colors duration-200" data-completed="true">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/60 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">directions_walk</span>
+</div>
+<div class="min-w-0">
+<p class="habit-name font-title-md text-title-md text-on-surface line-through text-on-surface-variant/80 truncate">Walk 5,000 steps</p>
+<p class="font-body-sm text-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done</span> 6,120 steps logged
+            </p>
+</div>
+</div>
+<button aria-label="Toggle Walk 5,000 steps" class="habit-toggle w-12 h-12 flex items-center justify-center shrink-0 active:scale-90 transition-transform">
+<span class="check-box w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</span>
+</button>
+</div>
+<!-- Habit 4 (Done) -->
+<div class="habit-item flex items-center justify-between p-3 rounded-xl bg-surface-container-low transition-colors duration-200" data-completed="true">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/60 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">self_improvement</span>
+</div>
+<div class="min-w-0">
+<p class="habit-name font-title-md text-title-md text-on-surface line-through text-on-surface-variant/80 truncate">Meditate 10 mins</p>
+<p class="font-body-sm text-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">done</span> Breath session complete
+            </p>
+</div>
+</div>
+<button aria-label="Toggle Meditate 10 mins" class="habit-toggle w-12 h-12 flex items-center justify-center shrink-0 active:scale-90 transition-transform">
+<span class="check-box w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</span>
+</button>
+</div>
+<!-- Habit 5 (Pending) -->
+<div class="habit-item flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest shadow-xs hover:bg-surface-container-low transition-colors duration-200" data-completed="false">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high/60 flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+</div>
+<div class="min-w-0">
+<p class="habit-name font-title-md text-title-md text-on-surface truncate">Evening Journal</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Scheduled for 9:30 PM
+            </p>
+</div>
+</div>
+<button aria-label="Toggle Evening Journal" class="habit-toggle w-12 h-12 flex items-center justify-center shrink-0 active:scale-90 transition-transform">
+<span class="check-box w-7 h-7 rounded-full bg-surface-container-highest text-transparent flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</span>
+</button>
+</div>
+<!-- Habit 6 (Pending) -->
+<div class="habit-item flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest shadow-xs hover:bg-surface-container-low transition-colors duration-200" data-completed="false">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high/60 flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+</div>
+<div class="min-w-0">
+<p class="habit-name font-title-md text-title-md text-on-surface truncate">Deep Work Sprint</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timelapse</span> 45 min focus block
+            </p>
+</div>
+</div>
+<button aria-label="Toggle Deep Work Sprint" class="habit-toggle w-12 h-12 flex items-center justify-center shrink-0 active:scale-90 transition-transform">
+<span class="check-box w-7 h-7 rounded-full bg-surface-container-highest text-transparent flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Non-Guilt Mindful Anchor Banner -->
+<aside class="rounded-xl p-space-md bg-secondary-container/40 flex items-start gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+</div>
+<div class="min-w-0">
+<h4 class="font-title-md text-title-md text-on-secondary-fixed font-semibold">Consistency over perfection</h4>
+<p class="font-body-md text-body-md text-on-secondary-container mt-0.5">
+        Zero pressure if today isn't 100%. Giving yourself permission to pause and returning tomorrow is what makes a habit permanent.
+      </p>
+</div>
+</aside>
+</div>
+<script>
+  (function () {
+    const habitItems = document.querySelectorAll('.habit-item');
+    const scoreText = document.getElementById('score-text');
+    const scoreNumeric = document.getElementById('score-numeric');
+    const progressCircle = document.getElementById('progress-circle');
+    const totalCircumference = 125.6;
+
+    function recalculateScore() {
+      const all = document.querySelectorAll('.habit-item');
+      let completedCount = 0;
+      all.forEach(item => {
+        if (item.getAttribute('data-completed') === 'true') {
+          completedCount++;
+        }
+      });
+      const total = all.length;
+      const percentage = Math.round((completedCount / total) * 100);
+
+      if (scoreText) {
+        scoreText.innerHTML = `${completedCount} of ${total} habits completed · <span class="text-primary font-medium">${percentage}% score</span>`;
+      }
+      if (scoreNumeric) {
+        scoreNumeric.textContent = `${percentage}%`;
+      }
+      if (progressCircle) {
+        const offset = totalCircumference - (totalCircumference * percentage) / 100;
+        progressCircle.setAttribute('stroke-dashoffset', offset.toFixed(1));
+      }
+    }
+
+    habitItems.forEach(item => {
+      const toggleBtn = item.querySelector('.habit-toggle');
+      if (!toggleBtn) return;
+
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isDone = item.getAttribute('data-completed') === 'true';
+        const checkbox = item.querySelector('.check-box');
+        const habitTitle = item.querySelector('.habit-name');
+
+        if (isDone) {
+          // Untoggle to pending
+          item.setAttribute('data-completed', 'false');
+          item.classList.remove('bg-surface-container-low');
+          item.classList.add('bg-surface-container-lowest', 'shadow-xs');
+          checkbox.className = 'check-box w-7 h-7 rounded-full bg-surface-container-highest text-transparent flex items-center justify-center transition-all duration-200';
+          if (habitTitle) {
+            habitTitle.classList.remove('line-through', 'text-on-surface-variant/80');
+          }
+        } else {
+          // Toggle to done
+          item.setAttribute('data-completed', 'true');
+          item.classList.remove('bg-surface-container-lowest', 'shadow-xs');
+          item.classList.add('bg-surface-container-low');
+          checkbox.className = 'check-box w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-xs scale-105 transition-all duration-200';
+          setTimeout(() => checkbox.classList.remove('scale-105'), 180);
+          if (habitTitle) {
+            habitTitle.classList.add('line-through', 'text-on-surface-variant/80');
+          }
+        }
+        recalculateScore();
+      });
+    });
+
+    // Calendar day selector interactivity
+    const dayCells = document.querySelectorAll('.day-cell');
+    const selectedDayTitle = document.getElementById('selected-day-title');
+
+    dayCells.forEach(cell => {
+      cell.addEventListener('click', () => {
+        dayCells.forEach(c => {
+          c.classList.remove('bg-primary-fixed', 'shadow-[0_4px_12px_rgba(18,101,136,0.18)]');
+          c.removeAttribute('data-selected');
+          const dayNum = c.querySelector('span:first-child');
+          if (dayNum) {
+            dayNum.className = 'font-label-md text-label-md text-on-surface';
+          }
+        });
+
+        cell.classList.add('bg-primary-fixed', 'shadow-[0_4px_12px_rgba(18,101,136,0.18)]');
+        cell.setAttribute('data-selected', 'true');
+        const daySpan = cell.querySelector('span:first-child');
+        if (daySpan) {
+          daySpan.className = 'font-headline-sm text-headline-sm text-on-primary-fixed font-bold leading-none';
+        }
+
+        const dateStr = cell.getAttribute('data-date');
+        if (dateStr && selectedDayTitle) {
+          const parts = dateStr.split('-');
+          const dayNum = parseInt(parts[2], 10);
+          selectedDayTitle.textContent = `October ${dayNum}, 2024`;
+        }
+      });
+    });
+
+    // Month Navigation Mock
+    const prevBtn = document.getElementById('prev-month-btn');
+    const nextBtn = document.getElementById('next-month-btn');
+    const monthLabel = document.getElementById('calendar-month-label');
+    const todayShortcut = document.getElementById('today-shortcut-btn');
+
+    const months = ['September 2024', 'October 2024', 'November 2024'];
+    let currentMonthIdx = 1;
+
+    if (prevBtn && monthLabel) {
+      prevBtn.addEventListener('click', () => {
+        if (currentMonthIdx > 0) {
+          currentMonthIdx--;
+          monthLabel.textContent = months[currentMonthIdx];
+        }
+      });
+    }
+
+    if (nextBtn && monthLabel) {
+      nextBtn.addEventListener('click', () => {
+        if (currentMonthIdx < months.length - 1) {
+          currentMonthIdx++;
+          monthLabel.textContent = months[currentMonthIdx];
+        }
+      });
+    }
+
+    if (todayShortcut) {
+      todayShortcut.addEventListener('click', () => {
+        currentMonthIdx = 1;
+        if (monthLabel) monthLabel.textContent = months[currentMonthIdx];
+        const day24 = document.getElementById('day-24-active');
+        if (day24) day24.click();
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_-4px_24px_rgba(23,38,56,0.06)]" data-active-classes="text-primary font-medium"><div class="flex items-center justify-around h-16 px-space-xs max-w-md mx-auto relative"><a class="flex flex-col items-center justify-center w-14 h-12 rounded-xl text-on-surface-variant hover:text-on-surface transition-colors duration-150" data-path="home-dashboard" href="#"><span class="material-symbols-outlined text-[24px]">home</span><span class="font-label-md text-label-md mt-0.5">Home</span></a><a aria-current="page" class="flex flex-col items-center justify-center w-14 h-12 rounded-xl transition-colors duration-150 text-primary font-medium" data-path="calendar-&amp;-history" href="#"><span class="material-symbols-outlined text-[24px]">calendar_today</span><span class="font-label-md text-label-md mt-0.5">Calendar</span></a><div class="relative -top-4 flex items-center justify-center"><a aria-label="Create Habit" class="flex items-center justify-center w-14 h-14 rounded-full bg-primary-container text-on-primary shadow-[0_8px_20px_rgba(91,159,197,0.36)] hover:bg-primary transition-all duration-200 active:scale-95" data-path="create-habit" href="#"><span class="material-symbols-outlined text-[28px]">add</span></a></div><a class="flex flex-col items-center justify-center w-14 h-12 rounded-xl text-on-surface-variant hover:text-on-surface transition-colors duration-150" data-path="insights-&amp;-analytics" href="#"><span class="material-symbols-outlined text-[24px]">insights</span><span class="font-label-md text-label-md mt-0.5">Insights</span></a><a class="flex flex-col items-center justify-center w-14 h-12 rounded-xl text-on-surface-variant hover:text-on-surface transition-colors duration-150" data-path="profile-&amp;-settings" href="#"><span class="material-symbols-outlined text-[24px]">person</span><span class="font-label-md text-label-md mt-0.5">Profile</span></a></div></nav></body></html>
