@@ -53,6 +53,7 @@ class SyncWorker(
             Log.w(TAG, "No access token after refresh")
             return Result.retry()
         }
+        val token = bearer
 
         val queue = container.syncQueueDao
         val habitDao = container.db.habitDao()
@@ -96,10 +97,10 @@ class SyncWorker(
                             minVersion = h.minVersion,
                         )
                         val res = if (item.operation == "create" && h.remoteId == null) {
-                            habitApi.create(bearer, body)
+                            habitApi.create(token, body)
                         } else {
                             val remoteId = h.remoteId ?: h.id
-                            habitApi.update(bearer, remoteId, body)
+                            habitApi.update(token, remoteId, body)
                         }
                         if (res.success) {
                             val remoteId = res.data?.id
@@ -117,11 +118,11 @@ class SyncWorker(
                     "habit" to "archive" -> {
                         val entity = habitDao.getById(item.entityId)
                         val remoteId = entity?.remoteId ?: item.entityId
-                        runCatching { habitApi.archive(bearer, remoteId) }
+                        runCatching { habitApi.archive(token, remoteId) }
                         queue.remove(item.id)
                     }
                     "habit" to "delete" -> {
-                        runCatching { habitApi.delete(bearer, item.entityId) }
+                        runCatching { habitApi.delete(token, item.entityId) }
                         queue.remove(item.id)
                     }
                     "habit_log" to "complete" -> {
@@ -149,7 +150,7 @@ class SyncWorker(
                         val habit = habitDao.getById(match.habitId)
                         val remoteHabitId = habit?.remoteId ?: match.habitId
                         val res = habitApi.createLog(
-                            bearer,
+                            token,
                             req.copy(habitId = remoteHabitId),
                         )
                         if (res.success) {

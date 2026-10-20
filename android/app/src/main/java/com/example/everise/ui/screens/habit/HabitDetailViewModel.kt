@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.everise.domain.model.Habit
 import com.example.everise.domain.model.HabitLog
 import com.example.everise.domain.model.LogStatus
-import com.example.everise.domain.model.StreakInfo
 import com.example.everise.domain.repository.HabitRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -25,10 +24,6 @@ class HabitDetailViewModel(
     val logs: StateFlow<List<HabitLog>> = habitRepository
         .observeLogs(habitId)
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
-
-    val streakInfo: StateFlow<StreakInfo> = habitRepository
-        .observeHabitStreak(habitId)
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), StreakInfo())
 
     fun setTodayStatus(status: LogStatus, note: String = "") {
         viewModelScope.launch {
